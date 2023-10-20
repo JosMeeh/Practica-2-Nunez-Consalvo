@@ -4,3 +4,16 @@ services:
     build: .
     ports:
       - "8083:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - database
+
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: manager
+      POSTGRES_PASSWORD: manager
+      POSTGRES_DB: fastapi_db
+    ports:
+      - "5432:5432"
